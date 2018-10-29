@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.3"
+    defaultConfig {
+        applicationId "com.bm.mytestdemo"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
+    }
+
+    //ADD THESE LINES:
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    //ADD THESE LINES:
+    compile 'com.android.support.test:runner:0.5'
+    compile 'com.android.support.test:rules:0.5'
+    compile 'junit:junit:4.12'
+    //compile 'org.robolectric:robolectric:3.3.2'
+    //compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    //解决rxjava内存泄漏
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0'
+
+    compile 'com.github.CKTim:Camera2Record:v1.0.0'
+
+}
